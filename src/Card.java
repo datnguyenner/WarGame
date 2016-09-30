@@ -19,7 +19,6 @@ public class Card implements Deck, Comparable<Card> {
 	public void create(int numberOfSuits, int numberOfRanks) {
 		ArrayList<Integer> cards = new ArrayList<>();
 		if(numberOfSuits == 0 || numberOfSuits > 4 || numberOfRanks==0 || numberOfRanks>13){
-			System.out.println("Invalid Deck");
 		}else{
 			for(int i = 2; i < numberOfRanks+2;i++){
 				for(int j = 0; j < numberOfSuits; j++){
