@@ -45,7 +45,13 @@ public class Card implements Deck, Comparable<Card> {
 	@Override
 	public String toString() {
 		
-		return this.card +"";
+		switch(card){
+			case 11: return "Jack"; 
+			case 12: return "Queen"; 
+			case 13: return "King"; 
+			case 14: return "Ace"; 
+			default: return card +"";		
+		}	
 	}
 
 	public List<Integer> getCards() {

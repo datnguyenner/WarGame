@@ -21,7 +21,7 @@ public class Test {
 	@org.junit.Test
 	public void test_war_play() { //Create new Deck
 		War newGame = new War();
-		newGame.play(4, 4, 4);
+		newGame.play(4, 13, 8);
 	}
 	
 	@org.junit.Test

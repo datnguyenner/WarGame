@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.TreeSet;
 
 /**
@@ -26,10 +27,13 @@ public class War {
 		boolean continuePlaying = true;
 		long startTime = System.currentTimeMillis();
 		boolean gameTooLong = false;
+		
+		int testRounds = 0;
 
 		while(continuePlaying){//Keep playing until 
 			ArrayList<Card> cardsOnTable = playHand(playersHand);
 			System.out.println("Cards on Table "+cardsOnTable);
+ 			Collections.shuffle(cardsOnTable);
 
 			System.out.println(Arrays.toString(checkForWinner(cardsOnTable, playersHand)));		
 			System.out.println();		
@@ -40,23 +44,25 @@ public class War {
 				}
 			}
 			long endTime = System.currentTimeMillis();
-			if(endTime - startTime>3000){
+			if(endTime - startTime>1000){
 				continuePlaying = false;
 				gameTooLong=true;
 			}
-	
+			
+			testRounds++;
 		}
 		if(gameTooLong){//tie Game!
-			System.out.println("We have a tie");
+			System.out.println("Game is too long, player with the most cards wins!");
 			for(Player player:playersHand){
 				if(player.getCardInHand().size()>0){
 					System.out.println("Player"+player.getPlayerId()+" is the winner!");
+					break;
 				}
 			}		
 		}else{
 			for(Player player:playersHand){
 				if(player.getCardInHand().size()>0){
-					System.out.println("Player"+player.getPlayerId()+" is the winner!");
+					System.out.println("Player"+player.getPlayerId()+" is the winner! "+testRounds+" rounds played.");
 				}
 			}
 		}
@@ -109,7 +115,7 @@ public class War {
 
 				Player[] warPlayersArray = new Player[warPlayers.size()];
 				warPlayers.toArray(warPlayersArray);
-				
+
 				ArrayList<Card> warCardsOnTable = playHand(warPlayersArray);
 				Player[] warWinnerPlayer = checkForWinner(warCardsOnTable, warPlayersArray);
 				int winnerId = 0;
